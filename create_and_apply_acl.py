@@ -20,7 +20,7 @@ if policy_protocol == 'icmp':
     destination_port = "-1"
 else:
     destination_port = raw_input('Destination Port number -> ')
-vnc = vnc_api.VncApi(username = "admin",password = "contrail123",tenant_name = "admin",api_server_host = "192.168.101.200")
+vnc = vnc_api.VncApi(username = "admin",password = "PASSWORD",tenant_name = "admin",api_server_host = "CONTRAIL_IP")
 tenant = vnc.project_read(fq_name = ['default-domain', tenant_name])
 
 #create policy
