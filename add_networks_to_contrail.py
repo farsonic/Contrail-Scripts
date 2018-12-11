@@ -20,7 +20,6 @@ vnc = vnc_api.VncApi(username = "admin",password = "PASSWORD",tenant_name = "adm
 tenant = vnc.project_read(fq_name = ['default-domain', 'vCenter'])
 ipam = vnc.network_ipam_read(fq_name = ['default-domain', 'vCenter', 'vCenter-ipam'])
 
-
 for subnet in subnets:
     start_addr = str(subnet[10])
     end_addr = str(subnet[100])
