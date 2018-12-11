@@ -5,11 +5,18 @@ from jnpr.junos.utils.config import Config
 from netaddr import *
 from vnc_api import vnc_api
 
+# This script will bulk add virtual networks to a Contrail controller and then populate these into the vCenter controller. 
+# Modify the ip variable to have a supernet to allocate subnnets from.
+# Modify the subnets parameter to split the supernet into multiple subnets. 
+# Modify the As number to align with the BGP AS used in your environment
+# DHCP Allocation start and stop addresses for the Virtual Network are controlled through start_addr and end_addr values 
+# Finally, modify the password and api_server_host entries. 
+
 AS='65000'
 network_number=1
-ip = IPNetwork('172.24.0.0/8')
+ip = IPNetwork('172.24.0.0/16')
 subnets = list(ip.subnet(24))
-vnc = vnc_api.VncApi(username = "admin",password = "contrail123",tenant_name = "admin",api_server_host = "192.168.101.200")
+vnc = vnc_api.VncApi(username = "admin",password = "PASSWORD",tenant_name = "admin",api_server_host = "Contrail_IP")
 tenant = vnc.project_read(fq_name = ['default-domain', 'vCenter'])
 ipam = vnc.network_ipam_read(fq_name = ['default-domain', 'vCenter', 'vCenter-ipam'])
 
